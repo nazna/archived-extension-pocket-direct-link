@@ -2,7 +2,12 @@
   "manifest_version": 3,
   "name": "extension-pocket-direct-link",
   "description": "Capture the HTTP response and replace article links",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "content_scripts": [
     {
       "matches": ["https://getpocket.com/*"],

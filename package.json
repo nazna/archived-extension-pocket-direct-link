@@ -1,6 +1,6 @@
 {
   "name": "extension-pocket-direct-link",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Capture the HTTP response and replace article links",
   "author": "nazna <naoya3e@gmail.com> (https://github.com/nazna)",
   "license": "MIT",
@@ -10,9 +10,10 @@
   },
   "main": "dist/inject.js",
   "scripts": {
-    "build": "tsc && cp manifest.json dist/manifest.json",
+    "build": "tsc && cp public/* dist",
     "format": "prettier --write .",
     "lint": "npm run typecheck && npm run format",
+    "pack": "zipack dist/manifest.json",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
@@ -20,7 +21,8 @@
     "@types/node": "14.14.27",
     "prettier": "2.2.1",
     "prettier-plugin-pkg": "0.8.0",
-    "typescript": "4.1.5"
+    "typescript": "4.1.5",
+    "zipack": "1.0.2"
   },
   "prettier": {
     "printWidth": 120,
