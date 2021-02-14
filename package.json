@@ -1,0 +1,33 @@
+{
+  "name": "extension-pocket-direct-link",
+  "version": "1.0.0",
+  "description": "Capture the HTTP response and replace article links",
+  "author": "nazna <naoya3e@gmail.com> (https://github.com/nazna)",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": "15.x"
+  },
+  "main": "dist/inject.js",
+  "scripts": {
+    "build": "tsc && cp manifest.json dist/manifest.json",
+    "format": "prettier --write .",
+    "lint": "npm run typecheck && npm run format",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.130",
+    "@types/node": "14.14.27",
+    "prettier": "2.2.1",
+    "prettier-plugin-pkg": "0.8.0",
+    "typescript": "4.1.5"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true
+  },
+  "volta": {
+    "node": "15.8.0"
+  }
+}
