@@ -1,0 +1,11 @@
+# npm logs
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# output
+dist
