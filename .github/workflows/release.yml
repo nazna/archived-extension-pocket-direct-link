@@ -1,0 +1,45 @@
+name: release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.5
+        with:
+          node-version: '14.x'
+      - run: npm ci
+      - run: npm run lint
+  build:
+    needs:
+      - check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.5
+        with:
+          node-version: '14.x'
+      - run: npm ci
+      - run: npm run build
+      - id: tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - uses: actions/create-release@v1
+        id: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./dist/extension-pocket-direct-link-${{ steps.tag.outputs.tag }}.zip
+          asset_name: extension-pocket-direct-link-${{ steps.tag.outputs.tag }}.zip
+          asset_content_type: application/zip
